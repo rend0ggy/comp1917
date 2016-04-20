@@ -22,8 +22,6 @@ int main (int argc, char *argv[]) {
  
     printf ("dat is (%f, %f, %d)\n", dat.x, dat.y, dat.z);
  
-    long int num2 = myAtoL("5.");
-
     assert (dat.x == 3.14);
     assert (dat.y == 0.141);
     assert (dat.z == 5);
@@ -87,8 +85,7 @@ triordinate extract (char *message)
 
 	position.x = myAtoD(xVal);
 	position.y = myAtoD(yVal);
-	position.z = myAtoL(zVal);
-	
+	position.z = myAtoL(zVal);	
 	return position;
 }
 
