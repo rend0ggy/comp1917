@@ -23,10 +23,12 @@ int main (int argc, char *argv[]) {
     printf ("dat is (%f, %f, %d)\n", dat.x, dat.y, dat.z);
  
     assert (dat.x == 3.14);
-    assert (dat.y == 0.141);
+    assert (dat.y == -0.141);
     assert (dat.z == 5);
     assert(myAtoD("3.14") == 3.14);
     assert(myAtoL("3400") == 3400);
+
+    printf("%lf\n",myAtoD("-365.14"));
  
     return EXIT_SUCCESS;
 }
@@ -75,8 +77,8 @@ triordinate extract (char *message)
 	yString = message;
 	zString = message;
 
-	xString += delimiterPositions[0]+2;
-	yString += delimiterPositions[1]+2;
+	xString += delimiterPositions[0] + 2;
+	yString += delimiterPositions[1] + 2;
 	zString += delimiterPositions[2] + 2;
 
 	strncpy(xVal,xString,xLen);
@@ -91,33 +93,33 @@ triordinate extract (char *message)
 
 double myAtoD(char* inputString)
 {
-	double result = 0;
-	int nonNumerical = 0;
+	double decimalResult = 0;
+	char integerComponent[strlen(inputString)];
 	int i = 0;
 	int j = 0;
 	float scaleFactor = 1;
+	while(inputString[i] != '.')
+	{
+		integerComponent[i] = inputString[i];
+		i++;
+	}
+	int decimalLocation = i-1;
+	i++;
 	while(i<strlen(inputString))
 	{
 		scaleFactor = 1;
-		j=nonNumerical;
-		while(j<i)
+		j = decimalLocation;
+		while(j<(i-1))
 		{
 			scaleFactor = scaleFactor*0.1;
 			j++;
 		}
-		if(inputString[i] > '9' || inputString[i] < '0'){
-			nonNumerical++;
-		}else{
-			result += scaleFactor*(inputString[i]-'0');
+		if(inputString[i] >= '0' && inputString[i] <= '9'){
+			decimalResult += scaleFactor*(inputString[i]-'0');
 		}
 		i++;
 	}
-	if(inputString[0] == '-')
-	{
-		return -1*result;
-	}else{
-		return result;
-	}
+	return decimalResult + myAtoL(integerComponent);
 }
 long myAtoL(char* inputString)
 {
