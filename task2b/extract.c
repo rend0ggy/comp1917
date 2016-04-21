@@ -22,11 +22,11 @@ int main (int argc, char *argv[]) {
  
     printf ("dat is (%f, %f, %d)\n", dat.x, dat.y, dat.z);
  
-    assert (dat.x == 3.14);
+    /*assert (dat.x == 3.14);
     assert (dat.y == -0.141);
     assert (dat.z == 5);
     assert(myAtoD("3.14") == 3.14);
-    assert(myAtoL("3400") == 3400);
+    assert(myAtoL("3400") == 3400);*/
 
     printf("%lf\n",myAtoD("-365.14"));
  
@@ -97,7 +97,7 @@ double myAtoD(char* inputString)
 	char integerComponent[strlen(inputString)];
 	int i = 0;
 	int j = 0;
-	float scaleFactor = 1;
+	double scaleFactor = 1;
 	while(inputString[i] != '.')
 	{
 		integerComponent[i] = inputString[i];
@@ -119,7 +119,12 @@ double myAtoD(char* inputString)
 		}
 		i++;
 	}
-	return decimalResult + myAtoL(integerComponent);
+	decimalResult += myAtoL(integerComponent);
+	if(inputString[0] == '-')
+	{
+		decimalResult = decimalResult*-1;
+	}
+	return decimalResult;
 }
 long myAtoL(char* inputString)
 {
@@ -143,9 +148,5 @@ long myAtoL(char* inputString)
 		}
 		i--;
 	}
-	if(inputString[0] == '-'){
-		return -1*result;
-	}else{
-		return result;
-	}
+	return result;
 }
