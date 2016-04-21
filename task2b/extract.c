@@ -28,7 +28,7 @@ int main (int argc, char *argv[]) {
     assert(myAtoD("3.14") == 3.14);
     assert(myAtoL("3400") == 3400);*/
 
-    printf("%lf\n",myAtoD("-365.14"));
+    printf("%ld\n",myAtoL("-9999"));
  
     return EXIT_SUCCESS;
 }
@@ -119,12 +119,11 @@ double myAtoD(char* inputString)
 		}
 		i++;
 	}
-	decimalResult += myAtoL(integerComponent);
 	if(inputString[0] == '-')
 	{
 		decimalResult = decimalResult*-1;
 	}
-	return decimalResult;
+	return decimalResult + + myAtoL(integerComponent);
 }
 long myAtoL(char* inputString)
 {
@@ -148,5 +147,10 @@ long myAtoL(char* inputString)
 		}
 		i--;
 	}
-	return result;
+	if(inputString[0] == '-')
+	{
+		return result*-1;	
+	}else{
+	 return result;
+	}
 }
