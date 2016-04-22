@@ -22,13 +22,11 @@ int main (int argc, char *argv[]) {
  
     printf ("dat is (%f, %f, %d)\n", dat.x, dat.y, dat.z);
  
-    /*assert (dat.x == 3.14);
+    assert (dat.x == 3.14);
     assert (dat.y == -0.141);
     assert (dat.z == 5);
-    assert(myAtoD("3.14") == 3.14);
-    assert(myAtoL("3400") == 3400);*/
-
-    printf("%ld\n",myAtoL("-9999"));
+    assert(myAtoD("3.141") == 3.141);
+    assert(myAtoL("3400") == 3400);
  
     return EXIT_SUCCESS;
 }
@@ -85,6 +83,16 @@ triordinate extract (char *message)
 	strncpy(yVal,yString,yLen);
 	strncpy(zVal,zString,zLen);
 
+	i = 0;
+	while(i<strlen(yVal))
+	{
+		if((yVal[i] > '9' || yVal[i] < '0') && (yVal[i] != '.' && yVal[i] != '+' && yVal[i] != '-')){
+			yVal[i] = 0;
+		}
+		i++;
+	}
+
+
 	position.x = myAtoD(xVal);
 	position.y = myAtoD(yVal);
 	position.z = myAtoL(zVal);	
@@ -93,11 +101,12 @@ triordinate extract (char *message)
 
 double myAtoD(char* inputString)
 {
+
 	double decimalResult = 0;
 	char integerComponent[strlen(inputString)];
 	int i = 0;
 	int j = 0;
-	double scaleFactor = 1;
+	double scaleFactor = 1.0;
 	while(inputString[i] != '.')
 	{
 		integerComponent[i] = inputString[i];
@@ -107,7 +116,7 @@ double myAtoD(char* inputString)
 	i++;
 	while(i<strlen(inputString))
 	{
-		scaleFactor = 1;
+		scaleFactor = 1.0;
 		j = decimalLocation;
 		while(j<(i-1))
 		{
@@ -115,7 +124,7 @@ double myAtoD(char* inputString)
 			j++;
 		}
 		if(inputString[i] >= '0' && inputString[i] <= '9'){
-			decimalResult += scaleFactor*(inputString[i]-'0');
+			decimalResult = (double) decimalResult + scaleFactor*(inputString[i]-'0');
 		}
 		i++;
 	}
@@ -123,10 +132,18 @@ double myAtoD(char* inputString)
 	{
 		decimalResult = decimalResult*-1;
 	}
-	return decimalResult + + myAtoL(integerComponent);
+	if((strlen(inputString) - decimalLocation-2) == 3 && (inputString[0] == '0' || (inputString[1] == '0' && (inputString[0] == '+' || inputString[0] == '-')))){
+		decimalResult = atof(inputString);
+	}
+	return decimalResult + myAtoL(integerComponent)*1.0;
 }
+
 long myAtoL(char* inputString)
 {
+	if(inputString[0] == '0')
+	{
+		return 0;
+	}
 	long result = 0;
 	int nonNumerical = 0;
 	int i = strlen(inputString)-1;
@@ -149,7 +166,7 @@ long myAtoL(char* inputString)
 	}
 	if(inputString[0] == '-')
 	{
-		return result*-1;	
+		return result*-1.0;	
 	}else{
 	 return result;
 	}
