@@ -1,0 +1,13 @@
+The HTTP lecture was both interesting and informative. Relating the notion of a function to something familiar like a webpage helped clarify the notion of what a function really is. 
+
+In reality, the process of accessing a web page involves lots of functions. We can create various layers of abstraction:
+
+->For the client, the web browser essentially takes a URL as input and returns a page as output.
+
+->The browser takes a URL and outputs a request to the relevent server
+
+->Google takes a request for a web page as input and returns a web page
+
+Several additional "functions" are operating on the clients computer and Google's server (as well as in between) in order to make that happen.
+
+The lecture really broadened my understanding of the nature and purpose of functions, and allowed me to gain a more abstract understanding of what a function does in the realm of computing

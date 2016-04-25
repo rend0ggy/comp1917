@@ -1,0 +1,46 @@
+		SIMPLE ENCODE FUNCTION
+----------------------------------------
+
+Task goal
+==========
+
+To create a function which takes inputs of:
+
+1. A single character 
+2. A "cipher"
+
+And returns an output which scrambles the single character with the cipher.
+
+The cipher is a pseudo-alphabet which matches lowercase letters a through with z with any given characters.
+
+Function I/O
+============
+
+- Input 1 is char 
+- Input 2 is a string that is NECESSARILY of length 26
+- Output is char
+
+DATA structures
+===============
+
+1. Both the clear and cipher alphabet should be arrays of length 26
+2. Return value should be a char
+
+Task approach
+=================
+
+We may break this task down into three parts:
+
+1. Match cipher alphabet with a->z
+2. Locate input char within cleartext alphabet (a->z or NULL)
+3. Return the matched char in the cipher alphabet
+
+Logical flow of program
+=======================
+
+GET input(char) AND cipher(string)
+CREATE array(26) OF EACH char in cipher 1->26 (cipherAlphabet)
+CREATE array(26) OF EACH char in alphabet a->z (standardAlphabet)
+LOCATE input IN standardAlphabet AS INTEGER (cipherInt) referring to position in standardAlphabet
+GET char (cipherChar) FROM cipherAlphabet WITH index cipherInt OR NULL
+RETURN cipherChar or char (IF cipherChar IS NULL)

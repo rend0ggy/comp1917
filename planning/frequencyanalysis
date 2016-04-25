@@ -1,0 +1,50 @@
+		FREQUENCY ANALYSIS FUNCTION
+-------------------------------------------
+
+
+Task goal
+==========
+
+To create a function which takes inputs of:
+
+1. A indefinite series of individual characters
+
+And returns the amount of times each character has occured in the given string
+
+Program I/O
+============
+
+- Input 1 is char 
+- Output is text via the printf function
+
+DATA structures
+===============
+
+1. Input value should be any char
+2. Frequency should be stored in an array where the index corresponds to the ASCII value with an offset
+	-> From simpleencode, i realized that a good way to manage characters is by having the index of the array being an ASCII number. This way we can assign meaningful information to letters that are used as parameters in the program.
+
+
+Task approach
+=================
+
+We may break this task down into three parts:
+
+1. Establish an array within the bounds we require
+	->We will arbitrarily define the boundaries to be all ASCII values between '0' and '~'
+2. Get user input and count iterations of characters
+3. Returning results
+
+Logical flow of program
+=======================
+
+DEFINE blank array OF LENGTH ('~' - '0') = array
+GET user INPUT = c
+WHILE (user c IS NOT eof)
+	convert c to int = i
+	ADD 1 to array WHERE INDEX is i
+	GET user INPUT = c
+FOR EACH element in LENGTH (index is j, value is k)
+	convert j to char
+	OUTPUT "j => k"
+	

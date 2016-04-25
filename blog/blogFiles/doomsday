@@ -1,0 +1,11 @@
+The doomsday task was both challenging and rewarding. Despite beginning the task behind (i joined the course in week 4) and missing the explanatory lectures, i quickly grapsed the general nature of the task and the concept of a doomsday function.
+
+I set out by attempting to understand what the doomsday method of finding a weekday given a certain date entailed. A wikipedia article titled "The Doomsday rule" proved to be highly useful. The process was broken down into 3 parts
+
+1.Determine the "anchor day" for the century.
+
+2.Use the anchor day for the century to calculate the doomsday for the year.
+
+3.Choose the closest date out of the ones that always fall on the doomsday (e.g. 4/4, 6/6, 8/8), and count the number of days (modulo 7) between that date and the date in question to arrive at the day of the week.
+
+I then downloaded the framework code provided 

@@ -1,0 +1,38 @@
+The chessboard program involved creating a bitmap image of a chessboard based on parameters given by the user. The general aim of the task was to:
+
+-> Get us to think about control structures and nested loops
+
+-> Teach us about how BITMAP files operate
+
+My first response was to research the format. BITMAP files are stored as an array of bytes. While there are various compression methods that reduce file size, the most standard bitmap files involes storing each pixel as 3 bytes. Pixels are written successively, starting in the top left and going across.
+
+The 3 bytes are used to represent colour. Typically, the RGB colour scheme is used, so each byte respresents the intensity of Red, Green and Blue individually. The relative intesities of the base colours affect the output color. For this task, i only needed two values (white and black).
+
+At this point, i began to decide how i would print out alternating rows and and alternating cells. I decided to use 2 skills already in my programming toolbox:
+
+-> Modular arithmetic 
+
+-> Nested loops
+
+I then began considering loops from the outside in.
+
+My first attempt at the project was before proper planning - i didn't really consider organization and a proper logic flow and i found myself getting lost in my own code. I decided to start again from scratch, really considering my ideas before writing any code at all.
+
+I decided that:
+
+I would need a loop for each "chess row". To get each row, i divided the number of pixel rows by the desired "square dimension" that the user inputed. This is loop A
+
+I would also need a loop for each chess square within the columns - so inside the first loop (A) i placed another loop. This loop similarly divded the number of pixel columns by the "square dimension". This is loop B 
+
+Within the Loops and B respectively, i nested 2 more loops (a2 and b2). These loops looped through each of the pixel ROWS and INDIVIDUAL PIXELS in each row. 
+
+Also within loops a and b, i placed a variable which changed between 0 and 1 with each iteration of the loop.
+
+FINAL RESULT of LOOPS:
+
+After this point, i have a loop which loops through every pixel in every row, flicking between values of 0 and 1 with every row or column change. 
+
+Since 0 represents black and 1 represents write, i can simple write 1 (as 3 bytes) to the sitmap file for each iteration of the innermost (loop b2) pixel loop.
+
+The project was successful! I gained valuable insights into how the BMP file project works.
+
