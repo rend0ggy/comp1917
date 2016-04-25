@@ -1,3 +1,3 @@
 <?php
-	header("Location: https://rend0g.com/COMP/blog/?blog=doomsday");
+	header("Location: https://rend0g.com/comp1917/blog/?blog=doomsday");
 ?>

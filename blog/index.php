@@ -30,7 +30,7 @@ $blogs = array("doomsday","http","chessboard");
                             			echo ' class="selected-item"';
                             		}
                             		?>
-                            		><a href="https://rend0g.com/COMP/blog">Home</a></li>
+                            		><a href="https://rend0g.com/comp1917/blog">Home</a></li>
                             	<?php
                             		foreach($blogs as $value){
                             			echo "<li";
