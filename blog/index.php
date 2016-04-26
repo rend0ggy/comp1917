@@ -1,5 +1,5 @@
 <?php
-$blogs = array("doomsday","http","chessboard");
+$blogs = array("doomsday","http","chessboard","mandelbrot");
 ?>
 <!doctype html>
 <html>
