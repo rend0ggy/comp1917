@@ -31,12 +31,51 @@ Once i had a good understanding of what the mandelbrot set was, i thought about 
 
 b) I needed to refresh my understanding of the bitmap file structure
 
+The first 14 bytes are the file header
+The next part is the DIB header
+The next section stores the color table for the BMP file
 
+After the header information, the actual image is stored in rows of pixels starting from the bottom left. Each pixel is represented with 3 bytes. Colors in greyscale can be represented using integers 0=>255
 
 2. Planning
 
+My planning can be seen at https://rend0g.com/comp1917/planning
+
 3. Implementation
 
-4. Debugging
+Implementing this assignment was non-trivial.
 
-5. DONE!
+Here are some major barriers that i overcame:
+
+a) Generating the "grayscale" effect
+
+Originally, my mandelbrot BMP was only in black or white. I originally misunderstood the notion of a mandelbrot fractal - i thought that a number was EITHER in the set or not (thus, only two colours could represent the fractal).
+After further research, i learned that one could use colour to represent how CLOSE the number was to being a member of the mandelbrot set by letting the color (in greyscale) be the number of iterations IF the number of iterations was capped at 255 (the colour black, representing membership).
+This prompted me to use a character array, the most efficient way of storing integers 0=>255 in memory
+
+b) Image was upside down
+
+I forgot to recall that the pixel array begins from the bottom of the image. I had to reverse the sign of the boundaries (where the boundaries are defined by the y coordinate specified +- the 2^-zoom*number of pixels) in order to compensate for this effect 
+
+c) serving a BMP file over HTTP
+
+I had to research serving files using google - this led me to stackoverflow. I used some sample code provided by a user
+
+Essentially, serving a file involved reading the entire contents of a file to memory and serving the data in that memory address to a client using the write function
+
+What i learned from this task
+================================
+
+This task enriched my understanding of HTTP, Bitmaps, The mandelbrot set and problem solving more generally.
+
+HTTP)
+
+I learned that HTTP doesn't "care" what the format of the data is that you send. If you specify the data type (i.e. image/BMP) and then send a string that you extracted from the file then the browser will handle it. This really aided in demystifying how data is sent over HTTP
+
+Bitmaps)
+
+This task complemented my understanding of BMP's from my previous tasks. I can now confidently generate greyscale images - although i failed to generate coloured bitmaps
+
+Mandelbrot set and Problem solving)
+
+The mandelbrot set was a nexus point between mathematical concepts i have been exposed to in Math1A and computing. Synthesising these two fields allowed me to think like a crafstman and apply knowledge from other areas to computing
