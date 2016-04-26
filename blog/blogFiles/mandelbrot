@@ -1,0 +1,42 @@
+This task challenged me physically, emotionally, psychologically, intellectually and spiritually. I started by planning (https://rend0g.com/comp1917/planning) the task - How would i break it down into small, managable pieces? How would i use the knowledge i have acquired to complex this complex and multi-faceted assignment.
+
+1. Research
+
+I had two primary areas that i needed to research before beginning my planning for this task
+
+a) I had to research the mandelbrot set
+
+My journey initially took me the wikipedia entry on the mandelbrot set. 
+
+The mandelbrot set is a set of vectors on the complex plane which satisfy a certain special inequality.
+
+A vector (c) is said to lie in the mandelbrot set if it's modulus remains less than 2 after an infinite amount
+of iterations of
+
+z(n+1) = z(n)^2+c
+
+For example, vector 1+0i would be
+
+z(2) = |1| + |1| which is too big
+
+The vector -1/2 + 0i would be 
+
+z(2) = 1/4 - 1/2
+z(3) = 1/4 - 1/2
+.......
+
+Therefore, it can be said that -1/2 +0i lies in the mandelbrot set since it remains less than 2 forever
+
+Once i had a good understanding of what the mandelbrot set was, i thought about how i might test whether or not a number was within the mandelbrot set
+
+b) I needed to refresh my understanding of the bitmap file structure
+
+
+
+2. Planning
+
+3. Implementation
+
+4. Debugging
+
+5. DONE!

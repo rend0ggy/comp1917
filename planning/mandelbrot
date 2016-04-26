@@ -1,0 +1,109 @@
+		MANDELBROT IMAGE SERVER
+----------------------------------------
+
+Task goal
+==========
+
+To create a web server which serves images of the mandelbrot set to users.
+The program must parse the GET request from the client and return either a script provided by the CSE department or an image of the mandelbrot set in some are of the complex plane.
+
+
+What is the mandelbrot set?
+============================
+
+The mandelbrot set is a set of vectors on the complex plane which satisfy a certain special inequality.
+
+A vector (c) is said to lie in the mandelbrot set if it's modulus remains less than 2 after an infinite amount
+of iterations of
+
+z(n+1) = z(n)^2+c
+
+For example, vector 1+0i would be
+
+z(2) = |1| + |1| which is too big
+
+The vector -1/2 + 0i would be 
+
+z(2) = 1/4 - 1/2
+z(3) = 1/4 - 1/2
+.......
+
+Therefore, it can be said that -1/2 +0i lies in the mandelbrot set since it remains less than 2 forever
+
+Function I/O
+============
+
+- User GET request 
+	-> TILE = boolean
+	-> x = real part of vector on complex plane
+	-> y = imaginary part of vector on complex plane
+	-> z = the zoom, where the distance between pixels on the plane is defined by 2^-z
+
+DATA structures
+===============
+
+External data structures
+-------------------------
+
+1. The mandelbrot image should be a bitmap FILE returned to the user
+2. The script with HTTP header should be a string returned to the user
+
+Internal data structures
+-------------------------
+
+1. Boolean value of whether a tile is being requested or not
+2. Double precision floating point variables for x and y positions, long integer for zoom
+3. x,y and z stored as a "triordinate" a la extract.c
+4. Integer to store the desired output image pixel dimensions => s
+5. Integer from 0=>255 based on output from the mandelbrot function
+6. Array of characters of size s*s to store values 0=>255 based on output from the mandelbrot set
+
+Task approach
+=================
+
+We may break this task down into 3 distinct sections with their own constituent parts:
+
+Server Component
+----------------
+
+1. Host a webserver that can serve pages to a client
+2. Parse the GET request from the client to ascertain the URL less hostname
+3. Determine whether the client wants to access a tile
+
+Mandelbrot Component
+--------------------
+
+4. Determining whether a number lies in the mandelbrot set
+5. Determining how close that number is to being a member of the mandelbrot set
+6. Extracing the field specified by the user in the GET request
+7. Creating a set of coordinates that we want to test for being members of the mandelbrot set
+8. Creating an array of characters that stores how close each vector is to being in the mandelbrot set
+
+Bitmap Component
+-----------------
+
+9. Writing that array of characters to a bitmap
+10. Serving that bitmap to the client
+
+
+Logical flow of program
+=======================
+
+GET request FROM client
+IS request FOR A tile?
+	YES => GO TO A)
+	NO => GO TO B)
+
+A)
+
+EXTRACT x,y and z from GET request
+GENERATE set of vectors to test
+FOR EACH vector (z)
+	COUNT ITERATIONS (limit at 256) taken for |z| to exceed 2
+ADD value to array of characters
+WRITE array of characters TO BMP
+RETURN BMP to user
+
+B)
+
+Serve client a script provided by the CSE department
