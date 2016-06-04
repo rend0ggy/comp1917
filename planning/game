@@ -1,0 +1,74 @@
+		KNOWLEDGE ISLAND GAME
+----------------------------------------
+
+Task goal
+==========
+
+In GROUPS!!! Replicate the game known as knowledge island. Use the framework provided to you (structs, .h files etc) As well as lecture information
+
+What is Knowledge island
+=========================
+
+Knowledge island is a strategy game. There are 3 players. Each player represents an Australian university. The goal is to reach a predetermined amount of points (called KPI). You gain KPI by developing your university.
+
+You can develop your university through:
+
+- ARC grants
+- building campuses
+- training or retraining students
+
+Building ARC grants and campuses "costs" students. 
+
+The board is represented by a set of hexagons joined together. Each player begins with 2 campuses on seperate vertexes of one of the hexagons on the perimeter. You may build an ARC grant along any of the perimeters that your campus is touching. You may build a campus at any of the vertices where you have an ARC grant PROVIDED that you don't already have a campus on that particular edge
+
+A dice is rolled. Rolling a dice corresponds to a hexagon on the board. Rolling dice is how you aquire students
+
+The rules from openLearning are listed below
+
+
+1.    There is no first rule
+2.    ARC grants go along edges. Each ARC grant must be connected to a campus or another major grant by the same university. At most one ARC grant per edge.
+3.    Campuses go at vertexes. No two campuses can be on adjacent vertexes. At most one campus per vertex. New campuses must be connected to one of your ARC grants.
+4.    At the start each of the three universities gets 2 campuses. Initially the universities have no publications, ARC grants, or IP patents. They have 3 x BPS, 3 x B?, 1 x MTV, 1 x MJ, 1 x M$, and no ThD students. Further campuses and ARC grants need to be funded from getting students.
+5.    If a university tries to start a business spinoff they can either get a research publication (probability 2/3) or some valuable IP/Patent (probability 1/3).
+6,    Any uni can retrain students, it costs 4 students 3 students of the same type to produce one new student of whatever type the university desires. (If the university has a retraining centre for students of type X then the cost is reduced for type X students, and the university can retrain two type X students into one student of some other type.) ThD students cannot be retrained.
+7.    Universities take turns in throwing a pair of dice. The result determines which areas produce students. Campuses adjacent to areas which produce students get one student of the type the region produces (except GO8 campuses get 2). This applies to all campuses of all universities which are adjacent, not just campuses of the university whose turn it is.
+8.    Whenever a 7 is thrown, immediately after any new students are produced, all MTV and M$ students of all universities decide to switch to ThD's.
+9.    The University whose turn it is may then engage in construction, retraining, and research/business activities if they wish. Once they are finished the next university throws the dice, and so on...
+10.    Universities must follow these rules.
+
+Numerical specifications:
+++++++++++++++++++++++++
+
+WINNER = 150 KPI
+
+INITIAL CONDITIONS
+	3 x BPS,
+	3 x B?,
+	1 x MTV,
+	1 x MJ,
+	1 x M$, 
+	0 x ThD
+
+COST
+	Normal Campus 	= BPS x 1
+					  B? x 1,
+					  MJ x 1,
+					  MTV x 1
+	Upgrade to G08	= m$ x 3, 
+		  			  MJ x 2
+	ARC 		  	= BPS x 1,
+		  			  b? x 1
+Points
+	Normal Campus 		= 10 each
+	G08			  		= 20 each
+	Most ARC grants		= 10
+	Most publications	= 10
+
+The sum of all above conditions yields the total KPI
+
+Broad Game logic
+=================
+
+WHILE THE GAME IS ACTIVE
+	player 1 rolls the dice
